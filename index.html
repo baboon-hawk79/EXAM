@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highlight Active Link</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <a href="#">Link text 1</a>
+    <a href="#">Link text 2</a>
+    <a href="#">Link text 3</a>
+    <a href="#">Link text 4</a>
+    <p id="active-link"></p>
+
+    <script>
+        const links = document.querySelectorAll('a');
+        const activeLinkText = document.getElementById('active-link');
+
+        links.forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.preventDefault(); // Запобігає переходу за посиланням
+
+                // Знімаємо клас active з усіх посилань
+                links.forEach(l => l.classList.remove('active'));
+
+                // Додаємо клас active до поточного посилання
+                this.classList.add('active');
+
+                // Виводимо текст активного посилання в абзац
+                activeLinkText.textContent = `Active link text: ${this.textContent}`;
+            });
+        });
+    </script>
+</body>
+</html>
